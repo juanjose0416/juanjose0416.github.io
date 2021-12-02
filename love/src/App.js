@@ -1,6 +1,8 @@
 import axios from 'axios';
 import './App.css';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -13,13 +15,33 @@ function App() {
     }
     )
       .then(res => {
+        toast.success('Message sent, please check your email! ', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
         console.log(res);
         setEmail('');
+      }).catch(e => {
+        toast.error('an error occurred, please check your email', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       });
   }
   const [email, setEmail] = useState('');
   return (
     <div className="App">
+      <ToastContainer />
       <div className="love__container">
         <h1 className="love__title">HAPPY BIRTHDAY LOVE!</h1>
         <p className="love__text">You have a gift available, write your email to claim it.</p>
